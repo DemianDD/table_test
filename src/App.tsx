@@ -1,24 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
+import { useState, useEffect } from 'react';
 import './App.css';
 
+import useFetch from './hooks/useFetch';
+import Table from './components/Table';
+
 function App() {
+  const [data, setData] = useState<any[] | undefined>([]);
+  const { fetchCsvData } = useFetch();
+
+  useEffect(() => {
+    fetchCsvData('/data/file.csv', setData)
+  }, []);
+
+  console.log(data)
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {data && data.length > 0 && <Table users={data} />}
+      {data === undefined && <p>Invalid CSV</p>}
     </div>
   );
 }
