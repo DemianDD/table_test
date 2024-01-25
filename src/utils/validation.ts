@@ -138,12 +138,12 @@ export const validationDictionary: {[key: string] : ((user: any) => ValidationRe
             new ValidationResult(false, 'Incorrect format') : 
             new ValidationResult(),
     ],
-    'LicenceState': [
-        (user) => !isLicenceStateValid(user['LicenceState']) ? 
+    'LicenseStates': [
+        (user) => !isLicenceStateValid(user['LicenseStates']) ? 
             new ValidationResult(false, 'Invalid licence state(s).') : 
             new ValidationResult(),
 
-        (user) => hasSpaces(user, "LicenceState")
+        (user) => hasSpaces(user, "LicenseStates")
     ],
     'Date': [
         (user) => !isDateValid(user['Date']) ? 
