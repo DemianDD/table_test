@@ -20,11 +20,16 @@ const useFetch = () => {
             const { data } = Papa.parse(csvString, {
                 header: true,
                 dynamicTyping: true,
+                transformHeader: header =>
+                header.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(''),
             });
 
-            if (!data.every(row => isRequiredField(row))) {
+            if (!data.every(row => isRequiredField(row).isValid === true)) {
                 throw new Error("Invalid csv format")
             }
+            if (data.some(row => row != null || row != undefined)){
+                callback(undefined)
+            } 
 
             callback(data);
             
