@@ -11,3 +11,18 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.error_container{
+  width: 250px;
+  height: 125px;
+  background-color: #ff8c8c;
+  border: 3px solid red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text_style{
+  color: white;
+  font-weight: bold;
+}
